@@ -652,3 +652,25 @@
 </body>
 
 </html>
+
+<script>
+  (function(){
+  emailjs.init("TU_PUBLIC_KEY");
+})();
+
+function enviarCorreo(correo, nombre) {
+  emailjs.send("service_xgh00bo", "template_avb50tr", {
+    email: correo,
+    name: nombre
+    //from_name: "Órbita Studio Creativo Gastronómico",
+    //message: "Mensaje desde mi página",
+    //reply_to: "envio.anuncios.correo@ejemplo.com"
+  })
+  .then(function(response) {
+    alert("Correo enviado 🚀");
+  }, function(error) {
+    alert("Error al enviar");
+    console.log(error);
+  });
+}
+</script>
