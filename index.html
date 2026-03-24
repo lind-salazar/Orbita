@@ -523,33 +523,33 @@
             <div class="contact-form-wrapper">
               <div class="form-header">
                 <h3>Agendá una reunión</h3>
-                <p>Diseñamos desde dentro de la gastronomía</p>
+                <p>Diseñamos desde adentro de la gastronomía</p>
               </div>
 
               <form action="forms/contact.php" method="post" class="php-email-form">
                 <div class="mb-3">
-                  <label for="contactName" class="form-label">Nombre completo</label>
-                  <input type="text" name="name" class="form-control" id="contactName" placeholder="Ingresa tu nombre completo" required="">
+                  <label for="contactName" class="form-label" style="color: #2d2ce3">Nombre</label>
+                  <input type="text" name="name" class="form-control" id="contactName" placeholder="Ingresa tu nombre" required="" style="background-color: #df0700; color: #fdcb03">
                 </div>
 
                 <div class="mb-3">
-                  <label for="contactEmail" class="form-label">Correo electrónico</label>
-                  <input type="email" class="form-control" name="email" id="contactEmail" placeholder="Ingresa tu correo" required="">
+                  <label for="contactEmail" class="form-label" style="color: #2d2ce3">Correo electrónico</label>
+                  <input type="email" class="form-control" name="email" id="contactEmail" placeholder="Ingresa tu correo" required="" style="background-color: #df0700; color: #fdcb03">
                 </div>
 
                 <div class="mb-3">
-                  <label for="contactPhone" class="form-label">Número de teléfono</label>
-                  <input type="tel" class="form-control" name="phone" id="contactPhone" placeholder="Ingresa tu número de teléfono">
+                  <label for="contactPhone" class="form-label" style="color: #2d2ce3">Número de teléfono</label>
+                  <input type="tel" class="form-control" name="phone" id="contactPhone" placeholder="Ingresa tu número de teléfono" style="background-color: #df0700; color: #fdcb03">
                 </div>
 
                 <div class="mb-3">
-                  <label for="contactSubject" class="form-label">Asunto</label>
-                  <input type="text" class="form-control" name="subject" id="contactSubject" placeholder="Ingresa el asunto de tu mensaje" required="">
+                  <label for="fechaReunion" class="form-label" style="color: #2d2ce3">Fecha deseada</label>
+                  <input type="datetime-local" class="form-control" name="subject" id="fechaReunion" placeholder="Ingresa el asunto de tu mensaje" required="" style="background-color: #df0700; color: #fdcb03" step="1800">
                 </div>
 
                 <div class="mb-4">
-                  <label for="contactMessage" class="form-label">Mensaje</label>
-                  <textarea class="form-control message-textarea" name="message" id="contactMessage" rows="5" placeholder="Ingresa tu mensaje" required=""></textarea>
+                  <label for="contactMessage" class="form-label" style="color: #2d2ce3">Mensaje</label>
+                  <textarea class="form-control message-textarea" name="message" id="contactMessage" rows="5" placeholder="Ingresa un mensaje (opcional)" required="" style="background-color: #df0700; color: #fdcb03"></textarea>
                 </div>
 
                 <div class="my-3">
@@ -622,22 +622,67 @@
 
 </html>
 
+<style>
+  #contactName::placeholder {
+    color: #fdcb03;
+  }
+    #contactEmail::placeholder {
+    color: #fdcb03;
+  }
+    #contactPhone::placeholder {
+    color: #fdcb03;
+  }
+    #fechaReunion::placeholder {
+    color: #fdcb03;
+  }
+    #contactMessage::placeholder {
+    color: #fdcb03;
+  }
+</style>
+
 <script>
   (function(){
   emailjs.init("acQtOilelbskseMmC");
 })();
 
-function EnviarCorreo() {
+function EnviarCorreo() {  
+
+  var nombre = document.getElementById("contactName").value
+
+  if(nombre == null || nombre == ""){
+    alert("Debes indicar tu nombre.");
+    return;
+  }
+
+  var correo = document.getElementById("contactEmail").value
+
+  if(correo == null || correo == ""){
+    alert("Debes indicar tu correo electrónico.");
+    return;
+  }
+
+   var telefono = document.getElementById("contactPhone").value
+
+  if(telefono == null || telefono == ""){
+    alert("Debes indicar tu teléfono.");
+    return;
+  }
+
+  var fecha = document.getElementById("fechaReunion").value;
+
+  if(fecha == null || fecha == ""){
+    alert("Debes indicar una fecha.");
+    return;
+  }
 
   const modal = document.getElementById("loadingModal");
-
-  // Mostrar modal
   modal.classList.add("active");
 
   emailjs.send("service_xgh00bo", "template_avb50tr", {
-    email: document.getElementById("contactEmail").value,
-    name: document.getElementById("contactName").value,
-    fecha: "24/03/2026"
+    email: correo,
+    name: nombre,
+    fecha: fecha,
+    telefono: telefono
   })
   .then(function(response) {
     modal.classList.remove("active"); // Ocultar modal
@@ -645,7 +690,17 @@ function EnviarCorreo() {
   }, function(error) {
     modal.classList.remove("active"); // Ocultar modal
     alert("Ocurrió un error al enviar tu solicitud");
-    console.log(error);
+    console.log(error);    
   });
+
+  LimpiarCampos();
+}
+
+function LimpiarCampos(){
+  document.getElementById("contactName").value = "";
+  document.getElementById("contactEmail").value = "";
+  document.getElementById("contactPhone").value = "";
+  document.getElementById("fechaReunion").value = "";
+  document.getElementById("contactMessage").value = "";
 }
 </script>

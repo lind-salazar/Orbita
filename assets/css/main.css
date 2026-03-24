@@ -3335,7 +3335,7 @@ section,
 }
 
 .contact .contact-form-wrapper {
-  background: linear-gradient(135deg, var(--surface-color), color-mix(in srgb, var(--surface-color), var(--background-color) 50%));
+  background: #edd9b0;
   padding: 40px;
   border-radius: 25px;
   box-shadow: 0 15px 40px color-mix(in srgb, var(--default-color), transparent 90%);
