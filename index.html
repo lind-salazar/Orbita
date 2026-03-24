@@ -371,8 +371,8 @@
                 <div class="col-lg-5">
                   <div class="content-wrapper">          
                     <h3>El Mosaico</h3>
-                    <p>“Desarrollamos el branding de El Mosaico Coffee & Garden como un sistema integral que articula identidad, experiencia y fidelización.
-                    El proyecto va más allá de lo visual, construyendo una narrativa de marca coherente en cada punto de contacto, desde piezas editoriales hasta dinámicas que fortalecen la relación con el cliente”</p>                 
+                    <p>Desarrollamos el branding de El Mosaico Coffee & Garden como un sistema integral que articula identidad, experiencia y fidelización.
+                    El proyecto va más allá de lo visual, construyendo una narrativa de marca coherente en cada punto de contacto, desde piezas editoriales hasta dinámicas que fortalecen la relación con el cliente</p>                 
                   </div>
                 </div>
 
@@ -538,7 +538,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="contactPhone" class="form-label">Número de teléfonor</label>
+                  <label for="contactPhone" class="form-label">Número de teléfono</label>
                   <input type="tel" class="form-control" name="phone" id="contactPhone" placeholder="Ingresa tu número de teléfono">
                 </div>
 
@@ -558,7 +558,7 @@
                   <div class="sent-message">Tu mensaje ha sido recibido, gracias!</div>
                 </div>
 
-                <button type="submit" class="submit-btn">
+                <button type="button" class="submit-btn" onclick="EnviarCorreo()">
                   <span>Enviar mensaje</span>
                   <i class="bi bi-arrow-right"></i>
                 </button>
@@ -572,8 +572,6 @@
   </main>
 
   <footer id="footer" class="footer light-background">
-
-
 
     <div class="copyright text-center">
       <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
@@ -616,25 +614,37 @@
 
 </body>
 
+
+<div id="loadingModal" class="loading-modal">
+  <div class="spinner"></div>
+  <p>Enviando solicitud</p>
+</div>
+
 </html>
 
 <script>
   (function(){
-  emailjs.init("TU_PUBLIC_KEY");
+  emailjs.init("acQtOilelbskseMmC");
 })();
 
-function enviarCorreo(correo, nombre) {
+function EnviarCorreo() {
+
+  const modal = document.getElementById("loadingModal");
+
+  // Mostrar modal
+  modal.classList.add("active");
+
   emailjs.send("service_xgh00bo", "template_avb50tr", {
-    email: correo,
-    name: nombre
-    //from_name: "Órbita Studio Creativo Gastronómico",
-    //message: "Mensaje desde mi página",
-    //reply_to: "envio.anuncios.correo@ejemplo.com"
+    email: document.getElementById("contactEmail").value,
+    name: document.getElementById("contactName").value,
+    fecha: "24/03/2026"
   })
   .then(function(response) {
-    alert("Correo enviado 🚀");
+    modal.classList.remove("active"); // Ocultar modal
+    alert("Solicitud recibida");
   }, function(error) {
-    alert("Error al enviar");
+    modal.classList.remove("active"); // Ocultar modal
+    alert("Ocurrió un error al enviar tu solicitud");
     console.log(error);
   });
 }

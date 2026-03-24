@@ -92,12 +92,15 @@
     }
   }
   agendarCita.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
+  e.preventDefault();
+
+  const section = document.querySelector('#contact');
+  if (section) {
+    section.scrollIntoView({
       behavior: 'smooth'
     });
-  });
+  }
+});
 
   window.addEventListener('load', toggleAgendarCita);
   document.addEventListener('scroll', toggleAgendarCita);
