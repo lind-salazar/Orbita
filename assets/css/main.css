@@ -454,8 +454,8 @@ h6 {
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
-  color: var(--default-color);
-  background-color: var(--background-color);
+  color: #fdcb03;
+  background-color: #2d2ce3;
   font-size: 14px;
   position: relative;
 }
@@ -1964,7 +1964,7 @@ section,
 }
 
 .services .services-grid .service-card {
-  background: #f6a1ba;
+  background: #edd9b0;
   padding: 2rem;
   border-radius: 15px;
   height: 100%;
@@ -3335,7 +3335,7 @@ section,
 }
 
 .contact .contact-form-wrapper {
-  background: #edd9b0;
+  background: #fdcb03;
   padding: 40px;
   border-radius: 25px;
   box-shadow: 0 15px 40px color-mix(in srgb, var(--default-color), transparent 90%);
