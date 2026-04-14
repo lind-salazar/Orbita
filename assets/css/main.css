@@ -2382,7 +2382,7 @@ section,
 .testimonials .testimonial-body p::after {
   content: '"';
   font-size: 1.5rem;
-  color: var(--accent-color);
+  color: #2d2ce3;
   opacity: 0.6;
   font-family: serif;
   position: absolute;
